@@ -1,0 +1,207 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#071426">
+  <meta name="description" content="MedQ Bank — Medical Quiz and Learning Platform">
+  <title>MedQ Bank V9</title>  <link rel="stylesheet" href="style.css">
+</head><body>
+  <header class="top-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="#" aria-label="MedQ Home">
+        <div class="brand-icon">M<span>Q</span></div>
+        <div>
+          <strong>MedQ Bank</strong>
+          <small>MEDICAL LEARNING PLATFORM</small>
+        </div>
+      </a>  <span class="version pill">V9 PREMIUM</span>
+</div>
+
+  </header>  <main class="wrap main-content"><!-- Dashboard -->
+<section id="dashboardPage" class="page">
+  <div class="welcome">
+    <span class="pill">YOUR MEDICAL JOURNEY</span>
+    <h1>Study smarter.<br><span>Become better.</span></h1>
+    <p>Practice medical questions, track your progress, and build your confidence.</p>
+  </div>
+
+  <div class="stats-grid">
+    <article class="card stat">
+      <span class="stat-icon">📚</span>
+      <b id="answeredCount">0</b>
+      <span>Answered</span>
+    </article>
+
+    <article class="card stat">
+      <span class="stat-icon">🎯</span>
+      <b id="accuracyCount">0%</b>
+      <span>Accuracy</span>
+    </article>
+
+    <article class="card stat">
+      <span class="stat-icon">🔥</span>
+      <b id="streakCount">0</b>
+      <span>Study streak</span>
+    </article>
+
+    <article class="card stat">
+      <span class="stat-icon">⚡</span>
+      <b id="xpCount">0</b>
+      <span>Experience XP</span>
+    </article>
+  </div>
+
+  <section class="card study-card">
+    <div class="section-heading">
+      <div>
+        <span class="small">READY TO PRACTICE?</span>
+        <h2>Start a new quiz</h2>
+      </div>
+      <span class="large-icon">🩺</span>
+    </div>
+
+    <p class="muted">
+      Test your knowledge with medical multiple-choice questions.
+    </p>
+
+    <label for="categorySelect">Medical subject</label>
+    <select id="categorySelect">
+      <option value="All">All subjects</option>
+      <option value="Anatomy">Anatomy</option>
+      <option value="Physiology">Physiology</option>
+      <option value="Cardiology">Cardiology</option>
+      <option value="Pharmacology">Pharmacology</option>
+    </select>
+
+    <label for="questionLimit">Number of questions</label>
+    <select id="questionLimit">
+      <option value="5">5 questions</option>
+      <option value="10">10 questions</option>
+      <option value="20">20 questions</option>
+      <option value="all">All available questions</option>
+    </select>
+
+    <button id="startQuizBtn" class="primary-btn full-btn">
+      Start Quiz <span>→</span>
+    </button>
+  </section>
+
+  <section class="card">
+    <div class="section-heading">
+      <div>
+        <span class="small">KEEP IMPROVING</span>
+        <h2>Your learning progress</h2>
+      </div>
+      <span>📈</span>
+    </div>
+
+    <div class="progress-info">
+      <span>Correct answers</span>
+      <strong id="progressLabel">0%</strong>
+    </div>
+
+    <div class="bar">
+      <i id="progressBar" style="width:0%"></i>
+    </div>
+
+    <p class="small" id="progressMessage">
+      Answer your first question to start tracking progress.
+    </p>
+  </section>
+
+  <button id="reviewBtn" class="secondary-btn full-btn">
+    Review incorrect answers
+  </button>
+</section>
+
+<!-- Quiz -->
+<section id="quizPage" class="page hidden">
+  <button id="exitQuizBtn" class="text-btn">← Exit quiz</button>
+
+  <div class="quiz-meta">
+    <span class="pill" id="quizCategory">Medical quiz</span>
+    <span class="small" id="questionCounter">Question 1 of 5</span>
+  </div>
+
+  <div class="bar quiz-progress">
+    <i id="quizProgressBar" style="width:0%"></i>
+  </div>
+
+  <article class="card question-card">
+    <span class="small">QUESTION</span>
+    <h2 id="questionText">Question text</h2>
+    <div id="optionsContainer"></div>
+
+    <div id="explanationBox" class="explain hidden" aria-live="polite">
+      <strong id="answerFeedback"></strong>
+      <p id="explanationText"></p>
+    </div>
+
+    <button id="nextQuestionBtn" class="primary-btn full-btn hidden">
+      Next question →
+    </button>
+  </article>
+</section>
+
+<!-- Results -->
+<section id="resultsPage" class="page hidden">
+  <article class="card result-card">
+    <div class="result-icon">🏆</div>
+    <span class="pill">QUIZ COMPLETED</span>
+    <h1>Your results</h1>
+    <div class="score-circle">
+      <strong id="finalAccuracy">0%</strong>
+      <span>Accuracy</span>
+    </div>
+
+    <div class="result-stats">
+      <div>
+        <strong id="finalCorrect">0</strong>
+        <span>Correct</span>
+      </div>
+      <div>
+        <strong id="finalWrong">0</strong>
+        <span>Incorrect</span>
+      </div>
+      <div>
+        <strong id="finalXP">0</strong>
+        <span>XP earned</span>
+      </div>
+    </div>
+
+    <p id="resultMessage" class="muted"></p>
+
+    <button id="homeBtn" class="primary-btn full-btn">
+      Back to dashboard
+    </button>
+
+    <button id="retryBtn" class="secondary-btn full-btn">
+      Try another quiz
+    </button>
+  </article>
+</section>
+
+<!-- Review -->
+<section id="reviewPage" class="page hidden">
+  <button id="backFromReviewBtn" class="text-btn">← Dashboard</button>
+  <h1>Review answers</h1>
+  <p class="muted">Questions you answered incorrectly.</p>
+  <div id="reviewContainer"></div>
+</section>
+
+  </main>  <nav class="bottom-nav" aria-label="Main navigation">
+    <button class="nav-btn active" data-page="dashboardPage">
+      <span>⌂</span>
+      <small>Home</small>
+    </button><button class="nav-btn" id="navQuizBtn">
+  <span>▤</span>
+  <small>Practice</small>
+</button>
+
+<button class="nav-btn" id="navReviewBtn">
+  <span>✓</span>
+  <small>Review</small>
+</button>
+
+  </nav>  <script src="app.js"></script></body>
+</html>
